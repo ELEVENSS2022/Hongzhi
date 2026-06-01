@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="./assets/pageicon/7.ico" type="image/x-icon">
+	<title>7</title>
+	<style>
+		@font-face {
+			font-family: Chinese;
+			src: url(./assets/resource/SanJiZhiLiangHeiJianTi.ttf);
+		}
+
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		html,
+		body {
+			background: #000;
+			height: 100vh;
+			width: 100vw;
+			position: fixed;
+		}
+
+		body {
+			transition: background-color 2s ease;
+		}
+
+		#poweron {
+			margin-left: calc(50vw - 50px);
+			margin-top: calc(50vh - 50px);
+		}
+
+		#poweronbuttonring {
+			width: 100px;
+			height: 100px;
+			border-radius: 50%;
+			background: conic-gradient(transparent 0deg,
+					transparent 45deg,
+					#333 45deg,
+					#333 315deg,
+					transparent 315deg,
+					transparent 360deg);
+			mask: radial-gradient(transparent 50%,
+					black 50%);
+		}
+
+		#poweronbuttoninside {
+			margin-top: 0px;
+			margin-left: 42.5px;
+			transform: translateY(-14vh);
+			width: 15px;
+			height: 8vh;
+			background-color: #333;
+			border-radius: 15%;
+		}
+
+		#poweroning {
+			display: none;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+		}
+
+		.loading {
+			position: relative;
+			width: 50px;
+			perspective: 200px;
+		}
+
+		.loading:before,
+		.loading:after {
+			position: absolute;
+			width: 20px;
+			height: 20px;
+			content: "";
+			animation: loading 0.5s infinite alternate;
+			background: rgba(0, 0, 0, 0);
+		}
+
+		.loading:before {
+			left: 0;
+		}
+
+		.loading:after {
+			right: 0;
+			animation-delay: 0.15s;
+		}
+
+		@keyframes loading {
+			0% {
+				transform: scale(1) translateY(0) rotateX(0);
+				box-shadow: 0 0 #0000;
+			}
+
+			to {
+				transform: scale(1.2) translateY(-25px) rotateX(45deg);
+				background: #000;
+				box-shadow: 0 25px 40px #000;
+			}
+		}
+
+		#yanimg {
+			width: 67vh;
+			height: 67vh;
+		}
+
+		#loadingline {
+			margin-top: 4vh;
+			height: 20px;
+			width: 200px;
+			border-radius: 10%;
+			border: #000 solid 2px;
+		}
+
+		#hand {
+			height: 8vh;
+			width: 8vh;
+			transform: translate(-4vw, -4vh);
+		}
+
+		#panda{
+			height: 7vh;
+			width: 7vh;
+			display: none;
+			transform: translate(9vw,-4vh);
+		}
+
+		#word{
+			transform: translate(9vw,-6vh);
+		}
+
+		#signin {
+			display: none;
+			height: 100vh;
+			width: 100vw;
+			position: relative;
+			backdrop-filter: blur(8px);
+		}
+
+		#signinheader{
+			color: #fff;
+		}
+
+		#signinicon {
+			margin-top: 15vh;
+			margin-left: 45vw;
+			height: 10vw;
+			width: 10vw;
+			border-radius: 50%;
+		}
+
+		#signininput {
+			margin: auto;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+		}
+
+		#signinsubmit {
+			margin-top: 2vh;
+			width: 7vw;
+			height: 5vh;
+			background-color: #ebebeb;
+			border: #bdbdbd solid 2px;
+			font-size: 3vh;
+			font-weight: lighter;
+			border-radius: 5px;
+		}
+
+		#signinsubmit:active {
+			background-color: #bdbdbd;
+			border: #959595 solid 2px;
+		}
+
+		#desktop {
+			display: none;
+			height: 100vh;
+			width: 100vw;
+		}
+
+		.loading-light {
+			position: relative;
+			width: 50px;
+			perspective: 200px;
+		}
+
+		.loading-light:before,
+		.loading-light:after {
+			position: absolute;
+			width: 20px;
+			height: 20px;
+			content: "";
+			animation: loading-light 0.5s infinite alternate;
+		}
+
+		.loading-light:before {
+			left: 0;
+		}
+
+		.loading-light:after {
+			right: 0;
+			animation-delay: 0.15s;
+		}
+
+		@keyframes loading-light {
+			0% {
+				transform: scale(1) translateY(0) rotateX(0);
+				box-shadow: 0 0 #fff;
+			}
+
+			to {
+				transform: scale(1.2) translateY(-25px) rotateX(45deg);
+				background: #fff;
+				box-shadow: 0 25px 40px #fff;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<div id="startup">
+		<div id="poweron">
+			<div id="poweronbuttonring"></div>
+			<div id="poweronbuttoninside"></div>
+		</div>
+		<div id="poweroning">
+			<div id="startupimage">
+				<img src="./assets/resource/yan.png" alt="7" id="yanimg">
+			</div>
+			<div class="loading"></div>
+			<div id="loadingline">
+				<img src="./assets/resource/hand.png" alt="7" id="hand">
+				<img src="./assets/resource/panda.png" alt="7" id="panda">
+				<i id="word"
+					style="font-family: 'Chinese','Maple Mono NF CN',serif;font-size: 20px;display: none;">冲突了</i>
+			</div>
+		</div>
+	</div>
+	<div id="signin">
+		<img src="./assets/icon/7.png" alt="7" id="signinicon">
+		<div id="signininput">
+			<h1 style="margin-top:3vh;font-family: '微软雅黑','Maple Mono NF CN',serif;font-size: 40px;font-weight: lighter;"
+				id="signinheader">登录</h1>
+			<input type="password" id="password" placeholder="tips:雷坚" style="margin-top:2vh;height: 5vh;width: 17vw;border-radius: 5px;"
+				autocomplete="off">
+			<button id="signinsubmit" onclick="checkpassword()">登录</button>
+			<div class="loading-light" id="signinloading" style="display: none;margin-top: 7vh;"></div>
+		</div>
+	</div>
+	<div id="desktop">
+		<div id="appicons"></div>
+		<div id="taskbar">
+			<div id="windowsbutton">
+
+			</div>
+			<div id="appiconsfixed">
+
+			</div>
+			<div id="statusdisplay">
+
+			</div>
+		</div>
+	</div>
+	<div id="shutdown">
+
+	</div>
+</body>
+<script>
+	const doms = {
+		startup: document.getElementById("startup"),
+		poweronbuttonring: document.getElementById("poweronbuttonring"),
+		poweronbuttoninside: document.getElementById("poweronbuttoninside"),
+		poweron: document.getElementById("poweron"),
+		poweroning: document.getElementById("poweroning"),
+		loadingline: document.getElementById("loadingline"),
+		hand: document.getElementById("hand"),
+		panda: document.getElementById("panda"),
+		word: document.getElementById("word"),
+		signin: document.getElementById("signin"),
+		password: document.getElementById("password"),
+		signinloading: document.getElementById("signinloading"),
+		signinsubmit: document.getElementById("signinsubmit"),
+		desktop: document.getElementById("desktop"),
+		signinheader: document.getElementById("signinheader"),
+	}
+	const times = {
+		poweron: 10,//1000
+		startupspeed: 2,//50
+		startupwaitspeed: 20000,//2000
+		opendesktopwaitspeed: 70,//3000
+		signinerror: 15,//1500
+	}
+
+	//7
+	let isstart = false;
+	let timer = null;
+	doms.poweron.addEventListener("click", (e) => {
+		clearTimeout(timer);
+		if (!isstart) {
+			doms.poweronbuttonring.style.background = "conic-gradient(transparent 0deg,transparent 45deg,#f10 45deg,#f10 315deg,transparent 315deg,transparent 360deg)";
+			doms.poweronbuttoninside.style.background = "#f10";
+			isstart = true;
+
+			timer = setTimeout(() => {
+				startup();
+			}, times.poweron)
+		} else {
+			doms.poweronbuttonring.style.background = "conic-gradient(transparent 0deg,transparent 45deg,#333 45deg,#333 315deg,transparent 315deg,transparent 360deg)";
+			doms.poweronbuttoninside.style.background = "#333";
+			isstart = false;
+		}
+	})
+
+	function startup() {
+		doms.poweron.style.display = "none";
+		document.body.style.backgroundColor = "#ffffff";
+		doms.poweroning.style.display = "flex";
+		handanimation();
+	}
+
+	function handanimation() {
+		let percent = 0;
+		const timer = setInterval(() => {
+			doms.hand.style.transform = `translate(${-55 + 200 * (percent / 100)}px,-20px)`;
+			doms.loadingline.style.background = `linear-gradient(90deg, #000 0%, #000 ${percent}%, #fff ${percent}%, #fff 100%)`;
+			percent += 1;
+			if (percent >= 102) {
+				clearInterval(timer);
+				doms.word.style.display = "inline-block";
+				doms.panda.style.display="inline-block";
+				setTimeout(signin, times.startupwaitspeed);
+			}
+		}, times.startupspeed);
+	}
+
+	//7
+	function signin() {
+		doms.startup.style.display = "none";
+		doms.signin.style.display = "block";
+		document.body.style.background = "url(./assets/desktop/7.png) center/cover no-repeat";
+	}
+
+	function checkpassword() {
+		const input = doms.password.value;
+		if (input == atob("Nzc3Nzc3Nw==")) {
+			doms.signinsubmit.style.display = "none";
+			doms.signinloading.style.display = "block";
+			doms.signinheader.innerHTML = "欢迎";
+			setTimeout(opendesktop, times.opendesktopwaitspeed);
+		} else {
+			doms.password.type = "text";
+			doms.password.style.color = "#f10";
+			doms.password.value = "这不对着呢啊！";
+			setTimeout(() => {
+				doms.password.type = "password";
+				doms.password.value = "";
+				doms.password.style.color = "#000"
+			}, times.signinerror)
+		}
+	}
+
+	function opendesktop() {
+		doms.signin.style.display = "none";
+		doms.desktop.style.display = "block";
+	}
+</script>
+
+</html>
