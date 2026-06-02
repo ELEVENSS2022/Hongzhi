@@ -16,6 +16,7 @@
 			margin: 0;
 			padding: 0;
 			box-sizing: border-box;
+			overflow: hidden;
 		}
 
 		html,
@@ -69,17 +70,17 @@
 		#loading {
 			position: relative;
 			display: flex;
-			align-items: center;
+			align-items: flex-end;
 			justify-content: center;
 			gap: 1vh;
 			perspective: 200px;
 			background-color: transparent;
+			height: 6vh;
 		}
 
 		#loading-1 {
-			background:transparent;
-			background-clip:text;
-			animation: loading 0.7s infinite alternate;
+			background-color: rgba(0, 0, 0, 0);
+			animation: loading 0.7s infinite ease-in-out alternate;
 			font-family: 'Maple Mono NF CN', serif;
 			font-size: 1.5vw;
 			font-weight: bold;
@@ -87,7 +88,8 @@
 		}
 
 		#loading-2 {
-			animation: loading 0.7s infinite alternate;
+			background-color: rgba(0, 0, 0, 0);
+			animation: loading 0.7s infinite ease-in-out alternate;
 			font-family: 'Maple Mono NF CN', serif;
 			font-size: 1.5vw;
 			font-weight: bold;
@@ -95,7 +97,8 @@
 		}
 
 		#loading-3 {
-			animation: loading 0.7s infinite alternate;
+			background-color: rgba(0, 0, 0, 0);
+			animation: loading 0.7s infinite ease-in-out alternate;
 			font-family: 'Maple Mono NF CN', serif;
 			font-size: 1.5vw;
 			font-weight: bold;
@@ -103,7 +106,8 @@
 		}
 
 		#loading-4 {
-			animation: loading 0.7s infinite alternate;
+			background-color: rgba(0, 0, 0, 0);
+			animation: loading 0.7s infinite ease-in-out alternate;
 			font-family: 'Maple Mono NF CN', serif;
 			font-size: 1.5vw;
 			font-weight: bold;
@@ -111,7 +115,8 @@
 		}
 
 		#loading-5 {
-			animation: loading 0.7s infinite alternate;
+			background-color: rgba(0, 0, 0, 0);
+			animation: loading 0.7s infinite ease-in-out alternate;
 			font-family: 'Maple Mono NF CN', serif;
 			font-size: 1.5vw;
 			font-weight: bold;
@@ -119,7 +124,8 @@
 		}
 
 		#loading-6 {
-			animation: loading 0.7s infinite alternate;
+			background-color: rgba(0, 0, 0, 0);
+			animation: loading 0.7s infinite ease-in-out alternate;
 			font-family: 'Maple Mono NF CN', serif;
 			font-size: 1.5vw;
 			font-weight: bold;
@@ -127,7 +133,8 @@
 		}
 
 		#loading-7 {
-			animation: loading 0.7s infinite alternate;
+			background-color: rgba(0, 0, 0, 0);
+			animation: loading 0.7s infinite ease-in-out alternate;
 			font-family: 'Maple Mono NF CN', serif;
 			font-size: 1.5vw;
 			font-weight: bold;
@@ -137,12 +144,12 @@
 		@keyframes loading {
 			0% {
 				transform: scale(1) translateY(0) rotateX(0);
-				box-shadow: 0 0 rgba(0, 0, 0, 0.3);
+				/*box-shadow: 0 0 rgba(0, 0, 0, 0.3);*/
 			}
 
 			to {
 				transform: scale(1.2) translateY(-10px) rotateX(45deg);
-				box-shadow: 0 25px 40px rgba(0, 0, 0, 0.3);
+				/*box-shadow: 0 25px 40px rgba(0, 0, 0, 0.3);*/
 			}
 		}
 
@@ -226,42 +233,116 @@
 			width: 100vw;
 		}
 
-		/*.loading-light {
+		#loading-l {
 			position: relative;
-			width: 50px;
+			display: flex;
+			align-items: flex-end;
+			justify-content: center;
+			gap: 1vh;
 			perspective: 200px;
+			background-color: rgba(0, 0, 0, 0);
+			height: 5vw;
 		}
 
-		.loading-light:before,
-		.loading-light:after {
-			position: absolute;
-			width: 20px;
-			height: 20px;
-			content: "";
-			animation: loading-light 0.5s infinite alternate;
+		#loading-l-1 {
+			background-color: rgba(0, 0, 0, 0);
+			animation: loading-l 0.7s infinite ease-in-out alternate;
+			font-family: 'Maple Mono NF CN', serif;
+			font-size: 1.5vw;
+			font-weight: bold;
+			animation-delay: 0.0s;
+			color: white;
 		}
 
-		.loading-light:before {
-			left: 0;
+		#loading-l-2 {
+			background-color: rgba(0, 0, 0, 0);
+			animation: loading-l 0.7s infinite ease-in-out alternate;
+			font-family: 'Maple Mono NF CN', serif;
+			font-size: 1.5vw;
+			font-weight: bold;
+			animation-delay: 0.1s;
+			color: white;
 		}
 
-		.loading-light:after {
-			right: 0;
-			animation-delay: 0.15s;
+		#loading-l-3 {
+			background-color: rgba(0, 0, 0, 0);
+			animation: loading-l 0.7s infinite ease-in-out alternate;
+			font-family: 'Maple Mono NF CN', serif;
+			font-size: 1.5vw;
+			font-weight: bold;
+			animation-delay: 0.2s;
+			color: white;
 		}
 
-		@keyframes loading-light {
+		#loading-l-4 {
+			background-color: rgba(0, 0, 0, 0);
+			animation: loading-l 0.7s infinite ease-in-out alternate;
+			font-family: 'Maple Mono NF CN', serif;
+			font-size: 1.5vw;
+			font-weight: bold;
+			animation-delay: 0.3s;
+			color: white;
+		}
+
+		#loading-l-5 {
+			background-color: rgba(0, 0, 0, 0);
+			animation: loading-l 0.7s infinite ease-in-out alternate;
+			font-family: 'Maple Mono NF CN', serif;
+			font-size: 1.5vw;
+			font-weight: bold;
+			animation-delay: 0.4s;
+			color: white;
+		}
+
+		#loading-l-6 {
+			background-color: rgba(0, 0, 0, 0);
+			animation: loading-l 0.7s infinite ease-in-out alternate;
+			font-family: 'Maple Mono NF CN', serif;
+			font-size: 1.5vw;
+			font-weight: bold;
+			animation-delay: 0.5s;
+			color: white;
+		}
+
+		#loading-l-7 {
+			background-color: rgba(0, 0, 0, 0);
+			animation: loading-l 0.7s infinite ease-in-out alternate;
+			font-family: 'Maple Mono NF CN', serif;
+			font-size: 1.5vw;
+			font-weight: bold;
+			animation-delay: 0.6s;
+			color: white;
+		}
+
+		@keyframes loading-l {
 			0% {
 				transform: scale(1) translateY(0) rotateX(0);
-				box-shadow: 0 0 #fff;
+				/*box-shadow: 0 0 rgba(255, 255, 255, 0.3);*/
 			}
 
 			to {
-				transform: scale(1.2) translateY(-25px) rotateX(45deg);
-				background: #fff;
-				box-shadow: 0 25px 40px #fff;
+				transform: scale(1.2) translateY(-10px) rotateX(45deg);
+				/*box-shadow: 0 25px 40px rgba(255, 255, 255, 0.3);*/
 			}
-		}*/
+		}
+
+		#taskbar{
+			height: 6vh;
+			width: 100vw;
+			margin-top: 94vh;
+			margin-left: 0;
+			background:rgba(236, 236, 236, 0.82);
+			backdrop-filter: blur(8px);
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 1vh;
+		}
+
+		#yandows{
+			height: 5vh;
+			width: 5vh;
+		}
 	</style>
 </head>
 
@@ -300,15 +381,21 @@
 			<input type="password" id="password" placeholder="tips:雷坚"
 				style="margin-top:2vh;height: 5vh;width: 17vw;border-radius: 5px;" autocomplete="off">
 			<button id="signinsubmit" onclick="checkpassword()">登录</button>
-			<div class="loading-light" id="signinloading" style="display: none;margin-top: 7vh;"></div>
+			<div id="loading-l" style="display: none;margin-top: 4vh;">
+				<div id="loading-l-1">7</div>
+				<div id="loading-l-2">7</div>
+				<div id="loading-l-3">7</div>
+				<div id="loading-l-4">7</div>
+				<div id="loading-l-5">7</div>
+				<div id="loading-l-6">7</div>
+				<div id="loading-l-7">7</div>
+			</div>
 		</div>
 	</div>
 	<div id="desktop">
 		<div id="appicons"></div>
 		<div id="taskbar">
-			<div id="windowsbutton">
-
-			</div>
+			<img src="./assets/resource/yandows.png" alt="7" id="yandows">
 			<div id="appiconsfixed">
 
 			</div>
@@ -334,20 +421,19 @@
 		word: document.getElementById("word"),
 		signin: document.getElementById("signin"),
 		password: document.getElementById("password"),
-		signinloading: document.getElementById("signinloading"),
+		signinloading: document.getElementById("loading-l"),
 		signinsubmit: document.getElementById("signinsubmit"),
 		desktop: document.getElementById("desktop"),
 		signinheader: document.getElementById("signinheader"),
 	}
 	const times = {
-		poweron: 10,//1000
-		startupspeed: 2,//50
-		startupwaitspeed: 20000,//2000
-		opendesktopwaitspeed: 70,//3000
-		signinerror: 15,//1500
+		poweron: 100,//1000
+		startupspeed: 20,//50
+		startupwaitspeed: 200,//2000
+		opendesktopwaitspeed: 300,//3000
+		signinerror: 150,//1500
 	}
 
-	//7
 	let isstart = false;
 	let timer = null;
 	doms.poweron.addEventListener("click", (e) => {
@@ -389,7 +475,6 @@
 		}, times.startupspeed);
 	}
 
-	//7
 	function signin() {
 		doms.startup.style.display = "none";
 		doms.signin.style.display = "block";
@@ -400,7 +485,7 @@
 		const input = doms.password.value;
 		if (input == atob("Nzc3Nzc3Nw==")) {
 			doms.signinsubmit.style.display = "none";
-			doms.signinloading.style.display = "block";
+			doms.signinloading.style.display = "flex";
 			doms.signinheader.innerHTML = "欢迎";
 			setTimeout(opendesktop, times.opendesktopwaitspeed);
 		} else {
