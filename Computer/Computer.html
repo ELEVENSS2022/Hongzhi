@@ -330,12 +330,14 @@
 			width: 100vw;
 			margin-top: 94vh;
 			margin-left: 0;
-			background: rgba(236, 236, 236, 0.82);
+			background: rgba(236, 236, 236, 0.9);
 			backdrop-filter: blur(8px);
 			display: flex;
 			justify-content: space-between;
 			align-items: center;
 			gap: 1vw;
+			position: relative;
+			z-index: 999;
 		}
 
 		#yandows {
@@ -343,7 +345,7 @@
 			width: 5vh;
 			transform: translateY(0.3vh) scale(1.0);
 			filter: brightness(0);
-			transition: all 0.05s ease-in-out;
+			transition: all 0.15s ease-in-out;
 			margin-left: 2vw;
 		}
 
@@ -353,6 +355,7 @@
 		}
 
 		#yandowsandappicons {
+			position: relative;
 			display: flex;
 			align-items: center;
 			justify-content: center;
@@ -361,11 +364,13 @@
 		#yandowsmenu {
 			height: 90vh;
 			width: 40vw;
-			transition: all 0.1s ease-in-out;
+			transition: all 0.15s ease-in-out;
 			background-color: rgba(236, 236, 236, 0.9);
 			backdrop-filter: blur(8px);
-			transform: translate(-59vw, 60vh);
-			border-radius:10px;
+			transform: translate(5px, 0vh);
+			border-radius: 10px;
+			position: absolute;
+			z-index: -999;
 		}
 	</style>
 </head>
@@ -424,8 +429,8 @@
 				<div id="appiconsfixed"></div>
 			</div>
 			<div id="statusdisplay"></div>
-			<div id="yandowsmenu"></div>
 		</div>
+		<div id="yandowsmenu"></div>
 	</div>
 	<div id="shutdown">
 
@@ -451,16 +456,29 @@
 		yandowsmenu: document.getElementById("yandowsmenu"),
 		yandows: document.getElementById("yandows"),
 	}
-	const times = {
-		poweron: 1000,//1000
-		startupspeed: 50,//50
-		startupwaitspeed: 2000,//2000
-		opendesktopwaitspeed: 3000,//3000
-		signinerror: 1500,//1500
-	}
+	/*
+		const times = {
+			poweron: 100,//1000
+			startupspeed: 5,//50
+			startupwaitspeed: 200,//2000
+			opendesktopwaitspeed: 300,//3000
+			signinerror: 150,//1500
+		}
+	*/
+
+	///*
+		const times = {
+			poweron: 1000,//1000
+			startupspeed: 50,//50
+			startupwaitspeed: 2000,//2000
+			opendesktopwaitspeed: 3000,//3000
+			signinerror: 1500,//1500
+		}
+	//*/
 
 	let isstart = false;
 	let timer = null;
+	document.addEventListener("keydown", e => handlespace(e));
 	doms.poweron.addEventListener("click", (e) => {
 		clearTimeout(timer);
 		if (!isstart) {
@@ -480,6 +498,7 @@
 
 	function startup() {
 		doms.poweron.style.display = "none";
+		document.removeEventListener("keydown", handlespace);
 		document.body.style.backgroundColor = "#ffffff";
 		doms.poweroning.style.display = "flex";
 		handanimation();
@@ -509,35 +528,51 @@
 
 	function checkpassword() {
 		const input = doms.password.value;
-		//if (input == atob("Nzc3Nzc3Nw==")) {
-		//	doms.signinsubmit.style.display = "none";
-		//	doms.signinloading.style.display = "flex";
-		//	doms.signinheader.innerHTML = "欢迎";
-		//	setTimeout(opendesktop, times.opendesktopwaitspeed);
-		//} else {
-		//	doms.password.type = "text";
-		//	doms.password.style.color = "#f10";
-		//	doms.password.value = "这不对着呢啊！";
-		//	setTimeout(() => {
-		//		doms.password.type = "password";
-		//		doms.password.value = "";
-		//		doms.password.style.color = "#000"
-		//	}, times.signinerror)
-		//}
+
+		///*
+		if (input == atob("Nzc3Nzc3Nw==")) {
+			doms.signinsubmit.style.display = "none";
+			doms.signinloading.style.display = "flex";
+			doms.signinheader.innerHTML = "欢迎";
+			setTimeout(opendesktop, times.opendesktopwaitspeed);
+		} else {
+			doms.password.type = "text";
+			doms.password.style.color = "#f10";
+			doms.password.value = "这不对着呢啊！";
+			setTimeout(() => {
+				doms.password.type = "password";
+				doms.password.value = "";
+				doms.password.style.color = "#000"
+			}, times.signinerror)
+		}
+		//*/
 
 		document.removeEventListener("keydown", handleenter);
 
+		/*
 		doms.signinsubmit.style.display = "none";
 		doms.signinloading.style.display = "flex";
 		doms.signinheader.innerHTML = "欢迎";
 		setTimeout(opendesktop, times.opendesktopwaitspeed);
+		*/
 	}
 
 	function handleenter(e) {
+		///*
 		if (e.keyCode == 13) {
 			e.preventDefault();
 			doms.signinsubmit.click();
 		}
+		//*/
+	}
+
+	function handlespace(e) {
+		///*
+		if (e.keyCode == 32) {
+			e.preventDefault();
+			doms.poweron.click();
+		}
+		//*/
 	}
 
 	function opendesktop() {
@@ -550,12 +585,12 @@
 		doms.yandows.classList.add('clicked');
 		setTimeout(() => {
 			doms.yandows.classList.remove('clicked');
-		}, 50);
+		}, 150);
 		if (!ismenuout) {
-			doms.yandowsmenu.style.transform = "translate(-59vw,-49vh)";
+			doms.yandowsmenu.style.transform = "translate(5px, -96.5vh)";
 			ismenuout = true;
 		} else {
-			doms.yandowsmenu.style.transform = "translate(-59vw,60vh)";
+			doms.yandowsmenu.style.transform = "translate(5px,0vh)";
 			ismenuout = false;
 		}
 	}
